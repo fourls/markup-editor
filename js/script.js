@@ -43,7 +43,10 @@ function header_formatting(full,gr1,gr2) {
 }
 
 var formatting = [
-    [/<br\s*\/?>\*\s(.*?)\s*(?=<)/ig,'<li class="st-listitem">$1</li>'], // unordered list
+    [/<br\s*\/?>\*\s(.*?)\s*(?=<)/ig,'<li class="st-listitem">$1</li>'], // unordered list item
+    [/<br\s*\/?>(\d)\.\s(.*?)\s*(?=<)/ig,'<li class="st-orderedlistitem">$2</li>'], // ordered list item
+    [/<li\sclass=["']st-listitem["']>(?:.*?)<\/li>(?=<[^l][^i])/gi,'<ul class="st-list">$&</ul>'], // unordered list
+    [/<li\sclass=["']st-orderedlistitem["']>(?:.*?)<\/li>(?=<[^l][^i])/gi,'<ol class="st-orderedlist">$&</ol>'], // ordered list
     [/<br\s*\/?>*&gt;\s*(.*?)(?=<)/ig,'<li class="st-blockquote">$1</li>'], // blockquote
     [/```\s*<br\s*\/?>(.*)```\s*<br\s*\/?>/ig,code_formatting], // multiline code
     [/`([^`]*)`(.*)<br\s*\/?>/ig,single_line_code_formatting], // singleline code
