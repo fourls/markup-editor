@@ -28,6 +28,12 @@ $(function(){
                 });
             });
 
+            text = text.replace(/&#60;\s*&#98;\s*&#114;\s*&#62;/ig,function(br){
+                return "<br>";
+            });
+
+            console.log(text);
+
             for (var i = 0; i < formatting.length; i++) {
                 text = text.replace(formatting[i][0],formatting[i][1]);
             }
