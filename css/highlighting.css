@@ -1,0 +1,56 @@
+.st-tag {
+    color: white;
+    padding: 2px 5px;
+    vertical-align: top;
+    font-size: 14px;
+    background-color: gray;
+    text-transform: lowercase;
+}
+
+.st-heading {
+    font-size: 30px;
+    line-height: 40px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.st-subheading {
+    font-size: 20px;
+    line-height: 28px;
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+
+.st-list {
+}
+
+.st-list li {
+    margin-left: 20px;
+}
+
+.st-tag.hl-blue {
+    color: white;
+    background-color: #307af1;
+}
+
+.st-tag.hl-red {
+    color: white;
+    background-color: red;
+}
+
+/*
+:Wow what a great editor!:
+::This was made by Elliot::
+[information]The tags look like this
+{
+> [blue,blue]
+> [red,red]
+}
+[information] The links look like this
+{
+> {Google Search@https://google.com}
+> {Kingsnet@http://kingsnet.kingswoodcollege.vic.edu.au}
+}
+*/

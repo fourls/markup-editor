@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <title>Editor</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Arvo" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/highlighting.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="toolbar">
+            <!--
+            <div class="buffer" style="width: 60px;"></div>
+            -->
+            <div class="title">Editor</div>
+            <!--
+            <button class="bold" onclick="document.execCommand('bold',false,null);">B</button>
+            <button class="italic" onclick="document.execCommand('italic',false,null);">I</button>
+            -->
+        </div>
+        <div class="text" contenteditable="true" spellcheck="false">
+            :Editor&nbsp;Cheatsheet:<br>
+            ::Made by&nbsp;Elliot::<br>
+            <br><br>
+            ::Tags::<br>
+            {<br>
+            &gt; [unstyled]<br>
+            &gt; [blue,blue]<br>
+            &gt; [red,red]<br>
+            }<br>
+            <br>
+            ::Links::<br>
+            {<br>
+            &gt; {Google Search@https://google.com}<br>
+            &gt; {Kingsnet@http://kingsnet.kingswoodcollege.vic.edu.au}&nbsp;<br>
+            }<br>
+            <br>
+            ::Escape::<br>
+        </div>
+    </div>
+    <div class="container">
+        <div class="toolbar">
+            <div class="title">View</div>
+        </div>
+        <div class="output"></div>
+</body>
+</html>
+

@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #505050;
+    background: url('../img/footer_lodyas.png');
+    font-family: 'Arvo';
+    overflow: hidden;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+}
+
+.container:nth-of-type(2) {
+    left: 50%;
+    right: 0;
+}
+
+.text, .output {
+    width: 100%;
+    flex: 1;
+    background-color: #f1f1f1;
+    padding: 10px;
+    color: gray;
+    transition: background-color 0.2s, color 0.2s;
+    overflow-y: scroll;
+    line-height: 24px;
+}
+
+.text {
+    font-family: Courier, monospace;
+    background-color: #0e0e0e;
+    color: #4c4c4c;
+}
+
+.output {
+    background-color: #ffffff;
+    color: black;
+    padding: 20px;
+    padding-top: 0;
+}
+
+
+.text:focus, .text:hover {
+    outline: none;
+    background-color: #1f1f1f;
+    color: #909090;
+}
+
+.toolbar {
+    height: 30px;
+    background-color: #dedede;
+    display: none;
+    z-index: 2;
+}
+
+.toolbar button {
+    -webkit-appearance: none;
+    border: none;
+    width: 30px;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    padding-top: 2px;
+    text-align: center;
+}
+
+.toolbar button:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.toolbar .title {
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    flex: 1;
+}
+
+.toolbar .buffer {
+    height: 100%;
+}
