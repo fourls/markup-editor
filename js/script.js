@@ -1,5 +1,37 @@
+function toggle_window(btn) {
+    if($('.main').hasClass('l-s')) {
+        $('.main').removeClass('l-s');
+        $('.main').addClass('s-l');
+        $('.s-l > i').removeClass('fa-expand');
+        $('.s-l > i').addClass('fa-compress');
+    } else {
+        $('.main').removeClass('s-l');
+        $('.main').addClass('l-s');
+        $('.s-l > i').removeClass('fa-compress');
+        $('.s-l > i').addClass('fa-expand');
+    }
+}
+
+function code_formatting(full,gr1) {
+    gr1 = gr1.replace(/[^\w\d\s]/g, function (char) {
+        return "&#" + char.charCodeAt(0) + ";";
+    }).replace(/&#60;\s*br\s*&#62;/ig,function(br){
+        return "<br>";
+    }).replace(/&#38;nbsp&#59;/g,function(br){
+        return "&nbsp;";
+    }).replace(/&#38;[gl]t&#59;/g,function(gt) {
+        if(gt == '&#38;lt;') {
+            return '&#60;';
+        } else {
+            return '&#62;';
+        }
+    });
+    return '<span class="st-code">' + gr1 + '</span>';
+}
+
 var formatting = [
     [/&gt;\s*([^<>]*)\s*<br\s*\/?>/ig,'<li class="st-listitem">$1</li>'],
+    [/`([^`]*)`/ig,code_formatting],
     [/\[([\w\d#]*),(\w*)\]/ig,'<span class="st-tag hl-$2">$1</span>'],
     [/\[([\w\d#]*)\]/ig,'<span class="st-tag">$1</span>'],
     [/:([^:<>]+):\s*<br\s*\/?>/ig,'<span class="st-heading">$1</span> <br>'],
@@ -22,17 +54,21 @@ $(function(){
 
             var text = $('.text')[0].innerHTML;
             
-            text = text.replace(/`([^`]*)`/ig,function(full,gr1) {
-                return gr1.replace(/./g, function (char) {
+            text = text.replace(/~([^~]*)~/ig,function(full,gr1) {
+                return gr1.replace(/[^\w\d\s]/g, function (char) {
                     return "&#" + char.charCodeAt(0) + ";";
+                }).replace(/&#60;\s*br\s*&#62;/ig,function(br){
+                    return "<br>";
+                }).replace(/&#38;nbsp&#59;/g,function(br){
+                    return "&nbsp;";
+                }).replace(/&#38;[gl]t&#59;/g,function(gt) {
+                    if(gt == '&lt;') {
+                        return '&#60;';
+                    } else {
+                        return '&#62;';
+                    }
                 });
             });
-
-            text = text.replace(/&#60;\s*&#98;\s*&#114;\s*&#62;/ig,function(br){
-                return "<br>";
-            });
-
-            console.log(text);
 
             for (var i = 0; i < formatting.length; i++) {
                 text = text.replace(formatting[i][0],formatting[i][1]);
@@ -73,6 +109,9 @@ $(function(){
                         e.preventDefault();
                         break;
                 }
+            }
+            if(e.keyCode == 9) {
+                e.preventDefault();
             }
         });
     

@@ -30,6 +30,15 @@
     margin-left: 20px;
 }
 
+.st-code {
+    font-family: Courier, monospace;
+    background-color: #1f1f1f;
+    color: #cacaca;
+    display: inline-block;
+    padding: 5px 10px;
+    width: 100%;
+}
+
 .st-tag.hl-blue {
     color: white;
     background-color: #307af1;
@@ -38,6 +47,16 @@
 .st-tag.hl-red {
     color: white;
     background-color: red;
+}
+
+.st-tag.hl-orange {
+    color: white;
+    background-color: #e8a62d;
+}
+
+.st-tag.hl-green {
+    color: white;
+    background-color: #4fc366;
 }
 
 /*

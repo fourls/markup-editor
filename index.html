@@ -2,19 +2,22 @@
 <html>
 <head>
     <title>Editor</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Arvo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/highlighting.css">
+    <script src="https://use.fontawesome.com/84a6a6533e.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
-    <div class="main">
+    <div class="toggle-window">
+        <button class="s-l" onclick="toggle_window(this);"><i class="fa fa-expand"></i></button>
+    </div>
+    <div class="main l-s">
         <div class="container">
             <div class="text" contenteditable="true" spellcheck="false">
-                :Editor&nbsp;Cheatsheet:<br>
-                ::Made by&nbsp;Elliot::<br>
-                <br><br>
+                :Editor Cheatsheet:<br>
+                ::Made by Elliot::<br>Edit the code in the left window to see your changes updated in real time on the right.<br><br>::Lists::<br>{<br>&gt; A list item<br>&gt; Another list item<br>}<br><br>
                 ::Tags::<br>
                 {<br>
                 &gt; [unstyled]<br>
@@ -25,17 +28,21 @@
                 ::Links::<br>
                 {<br>
                 &gt; {Google Search@https://google.com}<br>
-                &gt; {This Page@#}&nbsp;<br>
+                &gt; {This Page@#}<br>
                 }<br>
                 <br>
                 ::Escape::<br>
-                `[unchanged_tag,blue]<br>
-                {
-                > these will render as plain text
-                > even this link
-                > {Google Search@https://google.com}
-                }
-                `
+                ~An escape statement is great for using reserved characters&nbsp;in sentences, such as {curly brackets} or colons: these are just examples.<br>~<br>
+                ::Code::<br>
+                `This is a multiline code snippet.<br>
+                &nbsp; It<br>
+                &nbsp; &nbsp; preserves<br>
+                &nbsp; &nbsp; &nbsp; indentation<br>
+                &nbsp; &nbsp; and<br>
+                &nbsp; [escapes] <br>
+                shortcodes.<br>
+                `<br>
+            <br>
             </div>
         </div>
         <div class="container">
