@@ -22,8 +22,10 @@ $(function(){
 
             var text = $('.text')[0].innerHTML;
             
-            text = text.replace(/`([^`]*)`/ig,function(substring) {
-                return document.createTextNode(substring);
+            text = text.replace(/`([^`]*)`/ig,function(full,gr1) {
+                return gr1.replace(/./g, function (char) {
+                    return "&#" + char.charCodeAt(0) + ";";
+                });
             });
 
             for (var i = 0; i < formatting.length; i++) {
