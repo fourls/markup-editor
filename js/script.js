@@ -12,7 +12,7 @@ function toggle_window(btn) {
     }
 }
 
-function code_formatting(full,gr1) {
+function code_formatting(full,gr1,singleline=false) {
     gr1 = gr1.replace(/[^\w\d\s]/g, function (char) {
         return "&#" + char.charCodeAt(0) + ";";
     }).replace(/&#60;\s*br\s*&#62;/ig,function(br){
@@ -26,19 +26,28 @@ function code_formatting(full,gr1) {
             return '&#62;';
         }
     });
-    return '<span class="st-code">' + gr1 + '</span>';
+    if(singleline === true) {
+        return '<span class="st-code">' + gr1 + '</span>';
+    } else {
+        return '<span class="st-code">' + gr1 + '</span>' + '<br>';
+    }
+}
+
+function single_line_code_formatting(full,gr1,gr2) {
+    return code_formatting(full,gr1,true).replace(/st-code/g,'st-code inline') + gr2 + "<br>";
 }
 
 var formatting = [
-    [/&gt;\s*([^<>]*)\s*<br\s*\/?>/ig,'<li class="st-listitem">$1</li>'],
-    [/`([^`]*)`/ig,code_formatting],
+    [/\*\s([^<>]*)\s*<br\s*\/?>/ig,'<li class="st-listitem">$1</li>'],
+    [/&gt;\s*([^<]*)<br\s*\/?>/ig,'<li class="st-blockquote">$1</li>'],
+    [/```\s*<br\s*\/?>(.*)```\s*<br\s*\/?>/ig,code_formatting],
+    [/`([^`]*)`(.*)<br\s*\/?>/ig,single_line_code_formatting],
+    [/##\s([^<>]+)\s*<br\s*\/?>/ig,'<span class="st-subheading">$1</span> <br>'],
+    [/#\s([^<>]+)\s*<br\s*\/?>/ig,'<span class="st-heading">$1</span> <br>'],
+    [/\[([^\]]*)\]\(([^\)]*)\)/ig,'<a href="$2">$1</a>'],
+    [/[\*\-\_]{3,}\s*<br\s*\/?>/ig,'<hr>'],
     [/\[([\w\d#]*),(\w*)\]/ig,'<span class="st-tag hl-$2">$1</span>'],
-    [/\[([\w\d#]*)\]/ig,'<span class="st-tag">$1</span>'],
-    [/:([^:<>]+):\s*<br\s*\/?>/ig,'<span class="st-heading">$1</span> <br>'],
-    [/::([^:<>]+)::\s*<br\s*\/?>/ig,'<span class="st-subheading">$1</span> <br>'],
-    [/{([^@<>]*)@([^}\s]*)}\s*/ig,'<a href="$2">$1</a>'],
-    [/{\s*<br\s*\/?>/ig,'<ul class="st-list">'],
-    [/}\s*<br\s*\/?>/ig,'</ul>'],
+    [/\[([\w\d#]*)\]/ig,'<span class="st-tag">$1</span>']
 ];
 
 $(function(){
