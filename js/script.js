@@ -51,6 +51,7 @@ var formatting = [
     [/```\s*<br\s*\/?>(.*)```\s*<br\s*\/?>/ig,code_formatting], // multiline code
     [/`([^`]*)`(.*)<br\s*\/?>/ig,single_line_code_formatting], // singleline code
     [/<br\s*\/?>\s*(#{1,8})\s(.+?)\s*(?=<)/ig,header_formatting], // header
+    [/!\[([^\]]*)\]\(([^\)]*)\)/ig,'<img src="$2" alt="$1">'], // img                           | conflicts: link
     [/\[([^\]]*)\]\(([^\)]*)\)/ig,'<a href="$2">$1</a>'], // link
     [/<br\s*\/?>[\*\-\_]{3,}\s*<br\s*\/?>/ig,'<hr>'], // horizontal rule
     [/\[([^\],]+),?(\w*)?\]/ig,'<span class="st-tag hl-$2">$1</span>'], // tag                  | conflicts: link

@@ -45,6 +45,11 @@
     padding: 4px 5px;
 }
 
+img {
+    width: 100%;
+    padding: 10px;
+}
+
 hr {
     margin-top: 8px;
     border: 1px solid gray;
