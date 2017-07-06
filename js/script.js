@@ -37,17 +37,22 @@ function single_line_code_formatting(full,gr1,gr2) {
     return code_formatting(full,gr1,true).replace(/st-code/g,'st-code inline') + gr2 + "<br>";
 }
 
+function header_formatting(full,gr1,gr2) {
+    heading_level = gr1.length;
+    return '<br> <h' + heading_level + ' class="st-heading">' + gr2 + '</h' + heading_level + '>';
+}
+
 var formatting = [
-    [/\*\s([^<>]*)\s*<br\s*\/?>/ig,'<li class="st-listitem">$1</li>'],
-    [/&gt;\s*([^<]*)<br\s*\/?>/ig,'<li class="st-blockquote">$1</li>'],
-    [/```\s*<br\s*\/?>(.*)```\s*<br\s*\/?>/ig,code_formatting],
-    [/`([^`]*)`(.*)<br\s*\/?>/ig,single_line_code_formatting],
-    [/##\s([^<>]+)\s*<br\s*\/?>/ig,'<span class="st-subheading">$1</span> <br>'],
-    [/#\s([^<>]+)\s*<br\s*\/?>/ig,'<span class="st-heading">$1</span> <br>'],
-    [/\[([^\]]*)\]\(([^\)]*)\)/ig,'<a href="$2">$1</a>'],
-    [/[\*\-\_]{3,}\s*<br\s*\/?>/ig,'<hr>'],
-    [/\[([\w\d#]*),(\w*)\]/ig,'<span class="st-tag hl-$2">$1</span>'],
-    [/\[([\w\d#]*)\]/ig,'<span class="st-tag">$1</span>']
+    [/<br\s*\/?>\*\s(.*?)\s*(?=<)/ig,'<li class="st-listitem">$1</li>'], // unordered list
+    [/<br\s*\/?>*&gt;\s*(.*?)(?=<)/ig,'<li class="st-blockquote">$1</li>'], // blockquote
+    [/```\s*<br\s*\/?>(.*)```\s*<br\s*\/?>/ig,code_formatting], // multiline code
+    [/`([^`]*)`(.*)<br\s*\/?>/ig,single_line_code_formatting], // singleline code
+    [/<br\s*\/?>\s*(#{1,8})\s(.+?)\s*(?=<)/ig,header_formatting], // header
+    [/\[([^\]]*)\]\(([^\)]*)\)/ig,'<a href="$2">$1</a>'], // link
+    [/<br\s*\/?>[\*\-\_]{3,}\s*<br\s*\/?>/ig,'<hr>'], // horizontal rule
+    [/\[([^\],]+),?(\w*)?\]/ig,'<span class="st-tag hl-$2">$1</span>'], // tag                  | conflicts: link
+    [/[\*\_]{2}\s*([^\*\_]+)[\*\_]{2}/ig,'<b>$1</b>'], // bold                                  | conflicts: italic, list, horizontal rule
+    [/[\*\_]\s*([^\*\_]+)[\*\_]/ig,'<i>$1</i>'], // italic                                      | conflicts: bold, list, horizontal rule
 ];
 
 $(function(){
@@ -61,7 +66,7 @@ $(function(){
 
             document.execCommand('removeformat',false,null);
 
-            var text = $('.text')[0].innerHTML;
+            var text = '<br>' + $('.text')[0].innerHTML;
             
             text = text.replace(/~([^~]*)~/ig,function(full,gr1) {
                 return gr1.replace(/[^\w\d\s]/g, function (char) {
